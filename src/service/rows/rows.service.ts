@@ -8,11 +8,12 @@ export class RowsService {
   constructor(@InjectModel(Row) private rowModel: typeof Row) {}
 
   async createRow(data: any): Promise<Row> {
-    console.log('Creating row:', data);
+    const value = Array.isArray(data.values) && data.values[0] ? data.values[0][0] : '';
+
     return this.rowModel.create({
       rowNumber: data.row,
       columnNumber: data.column,
-      value: data.values, 
+      value: value, 
       sheetName: data.sheetName,
     });
   }
