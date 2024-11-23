@@ -15,21 +15,16 @@ export class WebhookController {
   @Post()
   async handleWebhook(@Body() body: any) {
     try {
-      console.log('Webhook data received:', body);
-
       const { row, column, values, sheetName, emails } = body;
 
       this.websocketGateway.sendMessage(body);
 
-      // Потім додаємо новий запис у базу даних
-      const newRow = await this.rowsService.createRow({
+      const newRow = await this.rowsService.createOrUpdateRow({
         row,
         column,
         values,
         sheetName,
       });
-
-      console.log('New row created:', newRow);
 
       await this.userService.addUsers(emails);
 

@@ -14,7 +14,7 @@ import { RowsService } from './service/rows/rows.service';
 import { UserController } from './controller/user/user.controller';
 import { UserService } from './service/user/user.service';
 
-
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
   imports: [
@@ -29,7 +29,6 @@ import { UserService } from './service/user/user.service';
     database: 'postgres', 
     models: [Row, User], 
     synchronize: true,
-    logging: true,
     dialectOptions: {
       ssl: {
         rejectUnauthorized: false,  
@@ -37,7 +36,17 @@ import { UserService } from './service/user/user.service';
     },  
   }),
 
-  SequelizeModule.forFeature([Row, User]),],
+  SequelizeModule.forFeature([Row, User]),
+
+  MailerModule.forRoot({
+    transport: {
+      host: process.env.EMAIL_HOST,
+      auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    },
+  })],
   controllers: [AppController, WebhookController, RowsController, UserController],
   providers: [AppService, WebsocketMessageGateway, RowsService, UserService],
 })

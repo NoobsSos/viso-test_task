@@ -16,7 +16,7 @@ import { RowsService } from 'src/service/rows/rows.service';
   
     @Post()
     async createRow(@Body() createRowDto: RowDto) {
-      return this.rowsService.createRow(createRowDto);
+      return this.rowsService.createOrUpdateRow(createRowDto);
     }
   
     @Get()
