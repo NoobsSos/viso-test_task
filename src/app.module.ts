@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Row } from './schemas/Row.schema';
+import { User } from './schemas/User.schema';
 
 import { WebhookController } from './controller/webhook/webhook.controller';
 import { WebsocketMessageGateway } from './gateway/websocket/websocket.gateway';
@@ -26,7 +27,7 @@ import { UserService } from './service/user/user.service';
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: 'postgres', 
-    models: [Row], 
+    models: [Row, User], 
     synchronize: true,
     logging: true,
     dialectOptions: {
@@ -36,7 +37,7 @@ import { UserService } from './service/user/user.service';
     },  
   }),
 
-  SequelizeModule.forFeature([Row]),],
+  SequelizeModule.forFeature([Row, User]),],
   controllers: [AppController, WebhookController, RowsController, UserController],
   providers: [AppService, WebsocketMessageGateway, RowsService, UserService],
 })
