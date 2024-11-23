@@ -12,7 +12,6 @@ import { RowsController } from './controller/rows/rows.controller';
 import { RowsService } from './service/rows/rows.service';
 import { UserController } from './controller/user/user.controller';
 import { UserService } from './service/user/user.service';
-import { user } from 'firebase-functions/v1/auth';
 
 
 
