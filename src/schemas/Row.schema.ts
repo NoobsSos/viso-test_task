@@ -7,10 +7,10 @@ export class Row extends Model<Row> {
     @Column
     id: number; 
 
-    @Column({ unique: true }) 
+    @Column 
     rowNumber: number;    
 
-    @Column({ unique: true })
+    @Column
     columnNumber: number;
 
     @Column

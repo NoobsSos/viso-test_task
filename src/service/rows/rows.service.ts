@@ -8,6 +8,7 @@ export class RowsService {
   constructor(@InjectModel(Row) private rowModel: typeof Row) {}
 
   async createRow(data: any): Promise<Row> {
+    console.log('Creating row:', data);
     return this.rowModel.create({
       rowNumber: data.row,
       columnNumber: data.column,

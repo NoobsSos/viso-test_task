@@ -8,7 +8,7 @@ import { RowsService } from 'src/service/rows/rows.service';
 export class WebhookController {
     constructor(
         private readonly websocketGateway: WebsocketMessageGateway,
-        private readonly rowsService: RowsService,  // Додаємо RowsService
+        private readonly rowsService: RowsService, 
       ) {}
   @Post()
   async handleWebhook(@Body() body: any) {
@@ -27,12 +27,16 @@ export class WebhookController {
         sheetName,
       });
 
+      console.log('New row created:', newRow);
+
       return { 
         status: 'success', 
         message: 'Webhook received and data saved successfully', 
         data: newRow 
       };
     } catch (error) {
+            console.error('Error in handleWebhook:', error);
+
       throw new HttpException('Failed to process webhook', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
