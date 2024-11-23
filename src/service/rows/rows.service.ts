@@ -49,13 +49,4 @@ export class RowsService {
   async findOneById(id: number): Promise<Row | null> {
     return this.rowModel.findByPk(id);
   }
-
-  async update(id: number, updateRowDto: RowDto): Promise<Row | null> {
-    const row = await this.findOneById(id);
-    if (!row) {
-      return null;
-    }
-    await row.update(updateRowDto);
-    return row;
-  }
 }

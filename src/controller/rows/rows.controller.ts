@@ -32,17 +32,5 @@ import { RowsService } from 'src/service/rows/rows.service';
       }
       return row;
     }
-  
-    @Patch(':id')
-    async updateRow(
-      @Param('id') id: string,
-      @Body() updateRowDto:RowDto,
-    ) {
-      const updatedRow = await this.rowsService.update(+id, updateRowDto);
-      if (!updatedRow) {
-        throw new NotFoundException('Row not found for update');
-      }
-      return updatedRow;
-    }
   }
   
