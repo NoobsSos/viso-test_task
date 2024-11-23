@@ -10,6 +10,9 @@ import { WebhookController } from './controller/webhook/webhook.controller';
 import { WebsocketMessageGateway } from './gateway/websocket/websocket.gateway';
 import { RowsController } from './controller/rows/rows.controller';
 import { RowsService } from './service/rows/rows.service';
+import { UserController } from './controller/user/user.controller';
+import { UserService } from './service/user/user.service';
+import { user } from 'firebase-functions/v1/auth';
 
 
 
@@ -35,7 +38,7 @@ import { RowsService } from './service/rows/rows.service';
   }),
 
   SequelizeModule.forFeature([Row]),],
-  controllers: [AppController, WebhookController, RowsController],
-  providers: [AppService, WebsocketMessageGateway, RowsService],
+  controllers: [AppController, WebhookController, RowsController, UserController],
+  providers: [AppService, WebsocketMessageGateway, RowsService, UserService],
 })
 export class AppModule {}
